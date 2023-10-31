@@ -1,18 +1,37 @@
-import React, {Component} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, {useState} from 'react';
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  SafeAreaView,
+} from 'react-native';
 
-class App extends Component {
-  componentDidMount() {
-    // Kod, który zostanie wykonany po zamontowaniu komponentu w DOM
-  }
+function App(): JSX.Element {
+  const [visible, setVisible] = useState(false);
 
-  render() {
-    return (
+  const _onPressButton = () => {
+    setVisible(!visible);
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
       <View style={styles.container}>
         <Text style={styles.text}>Zadanie 2</Text>
+        <View>
+          <TouchableOpacity onPress={_onPressButton} style={styles.opacity}>
+            <Text>PRESS ME!</Text>
+          </TouchableOpacity>
+        </View>
+        {visible && (
+          <View>
+            <Text>Nazywam się</Text>
+            <Text>Jan Czaja</Text>
+          </View>
+        )}
       </View>
-    );
-  }
+    </SafeAreaView>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -26,6 +45,11 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: 'center',
     margin: 10,
+  },
+  opacity: {
+    alignItems: 'center',
+    backgroundColor: '#DDDDDD',
+    padding: 10,
   },
 });
 
